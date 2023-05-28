@@ -38,6 +38,7 @@ jobs:
        echo "Hello"
        pwd
        ls
+       cd exercises
        cd ${{ github.event.inputs.service_name }}
        pwd
        terraform init
@@ -47,5 +48,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
      run:  |
        pwd
+       cd exercises
        cd ${{ github.event.inputs.service_name }}
        terraform ${{ github.event.inputs.action }}
