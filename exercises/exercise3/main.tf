@@ -220,7 +220,8 @@ resource "aws_security_group" "webserver" {
 #====================================
 
 resource "aws_instance" "bastion" {
-  ami                         = "ami-02868af3c3df4b3aa"
+  ami                         = "ami-0bef6cc322bfff646"
+  /*ami                         = "ami-02868af3c3df4b3aa"*/
   instance_type               = var.instance_type
   key_name                    = var.key_name
   subnet_id                   = aws_subnet.public[0].id
