@@ -8,6 +8,14 @@ terraform {
   }
 }
 
+terraform {
+  backend "s3" {
+    bucket = "bucket-for-tf-state-001"
+    key    = "alb-with-ec2/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
+
 provider "aws" {
   region = "us-west-2"
 }
