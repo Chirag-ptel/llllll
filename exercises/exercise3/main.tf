@@ -305,7 +305,7 @@ resource "aws_lb" "alb1" {
   }
 }
 
-resource "aws_alb_target_group" "webserver" {
+resource "aws_lb_target_group" "webserver" {
   vpc_id   = aws_vpc.main.id
   port     = 80
   protocol = "HTTP"
@@ -318,7 +318,7 @@ resource "aws_alb_listener" "front_end" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.webserver.arn
+    target_group_arn = aws_lb_target_group.webserver.arn
   }
 }
 
@@ -328,7 +328,7 @@ resource "aws_alb_listener_rule" "rule1" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_alb_target_group.webserver.arn
+    target_group_arn = aws_lb_target_group.webserver.arn
   }
 
   condition {
@@ -345,7 +345,7 @@ resource "aws_autoscaling_group" "asg" {
   max_size         = 2
   min_size         = 2
 
-  target_group_arns = [aws_alb_target_group.webserver.arn]
+  target_group_arns = [aws_lb_target_group.webserver.arn]
 
   launch_template {
     id      = aws_launch_template.webtemplate.id
